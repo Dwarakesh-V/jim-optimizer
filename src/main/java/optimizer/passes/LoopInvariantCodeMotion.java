@@ -2,7 +2,6 @@ package optimizer.passes;
 
 import soot.*;
 import soot.jimple.*;
-import soot.toolkits.graph.*;
 
 import java.util.*;
 
@@ -10,10 +9,11 @@ public class LoopInvariantCodeMotion {
 
     public void transform(Body body) {
 
-        ExceptionalUnitGraph graph =
-                new ExceptionalUnitGraph(body);
+        Iterator<Unit> it = body.getUnits().snapshotIterator();
 
-        for (Unit u : body.getUnits()) {
+        while (it.hasNext()) {
+
+            Unit u = it.next();
 
             if (u instanceof AssignStmt) {
 
@@ -32,8 +32,7 @@ public class LoopInvariantCodeMotion {
                     body.getUnits().remove(u);
                     body.getUnits().insertBefore(
                             u,
-                            body.getUnits().getFirst()
-                    );
+                            body.getUnits().getFirst());
                 }
             }
         }

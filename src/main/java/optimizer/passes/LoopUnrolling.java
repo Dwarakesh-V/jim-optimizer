@@ -9,10 +9,11 @@ public class LoopUnrolling {
 
     public void transform(Body body) {
 
-        List<Unit> copy =
-                new ArrayList<>(body.getUnits());
+        Iterator<Unit> it = body.getUnits().snapshotIterator();
 
-        for (Unit u : copy) {
+        while (it.hasNext()) {
+
+            Unit u = it.next();
 
             if (u instanceof AssignStmt) {
 
@@ -20,7 +21,6 @@ public class LoopUnrolling {
 
                 if (stmt.getRightOp() instanceof IntConstant) {
 
-                    // Simple duplication example
                     body.getUnits().insertAfter(
                             (Unit) stmt.clone(), u);
                 }

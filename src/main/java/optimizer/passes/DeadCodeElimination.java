@@ -17,7 +17,8 @@ public class DeadCodeElimination {
             }
         }
 
-        Iterator<Unit> it = body.getUnits().snapshotIterator();
+        Iterator<Unit> it =
+                body.getUnits().snapshotIterator();
 
         while (it.hasNext()) {
 
