@@ -1,0 +1,1 @@
+javac -d target/input-classes input/Test.java
