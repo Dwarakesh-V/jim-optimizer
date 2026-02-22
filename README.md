@@ -92,3 +92,10 @@ The final optimized Jimple will reflect these efficiencies, reducing the number 
 2.  Compile the input files to the `target/input-classes` directory.
 3.  Run the `Main` class.
 4.  Find the optimized Jimple output in the `sootOutput` directory.
+
+## Terminal Output
+<img width="1362" height="689" alt="image" src="https://github.com/user-attachments/assets/dbadbf19-6718-4492-b522-7b9d449bc4a3" />
+
+## Optimized Code
+<img width="1362" height="689" alt="image" src="https://github.com/user-attachments/assets/129a092e-10e0-467a-9e6b-ac799cb3f473" />
+
