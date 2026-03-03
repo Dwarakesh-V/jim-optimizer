@@ -1,7 +1,6 @@
 package optimizer;
 
 import soot.*;
-import soot.BodyTransformer;
 
 import java.util.Map;
 
@@ -31,6 +30,10 @@ public class OptimizerPipeline extends BodyTransformer {
 
         new ConstantFolding().transform(body);
         printBody(body, "Constant Folding");
+
+        new AlgebraicSimplification().transform(body);
+        printBody(body, "Algebraic Simplification");
+
 
         new CopyPropagation().transform(body);
         printBody(body, "Copy Propagation");

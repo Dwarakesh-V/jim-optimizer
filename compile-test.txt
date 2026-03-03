@@ -1,1 +1,1 @@
-javac -d target/input-classes input/Test.java
+javac -d target/input-classes input/StressTest.java
