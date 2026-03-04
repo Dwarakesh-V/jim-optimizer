@@ -12,6 +12,15 @@ public class Main {
         System.out.println("-> Starting Jimple Optimizer");
 
         String inputDir = "target/input-classes";
+        String outputDir = "sootOutput";
+
+        if (args.length > 0) {
+            inputDir = args[0];
+        }
+
+        if (args.length > 1) {
+            outputDir = args[1];
+        }
 
         G.reset();
 
@@ -20,14 +29,17 @@ public class Main {
         Options.v().set_output_format(Options.output_format_jimple);
         Options.v().set_allow_phantom_refs(true);
 
-        // DO NOT enable whole_program for now
+        Options.v().set_output_dir(outputDir);
+
+        // keep this false unless doing interprocedural analysis
         Options.v().set_whole_program(false);
 
         Scene.v().loadNecessaryClasses();
 
         System.out.println("-> Registering optimization pipeline...");
 
-        PackManager.v().getPack("jtp")
+        PackManager.v()
+                .getPack("jtp")
                 .add(new Transform("jtp.pipeline",
                         new OptimizerPipeline()));
 
@@ -36,6 +48,7 @@ public class Main {
         PackManager.v().runPacks();
         PackManager.v().writeOutput();
 
+        System.out.println("-> Output written to: " + outputDir);
         System.out.println("-> Done.");
     }
 }

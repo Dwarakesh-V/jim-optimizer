@@ -9,9 +9,7 @@ import optimizer.passes.*;
 public class OptimizerPipeline extends BodyTransformer {
 
     private void printBody(Body body, String passName) {
-        System.out.println("\n==============================");
         System.out.println("After: " + passName);
-        System.out.println("==============================");
         System.out.println(body);
     }
 
@@ -26,43 +24,43 @@ public class OptimizerPipeline extends BodyTransformer {
         printBody(body, "Function Inlining");
 
         new ConstantPropagation().transform(body);
-        printBody(body, "Constant Propagation");
+        // printBody(body, "Constant Propagation");
 
         new ConstantFolding().transform(body);
-        printBody(body, "Constant Folding");
+        // printBody(body, "Constant Folding");
 
         new AlgebraicSimplification().transform(body);
-        printBody(body, "Algebraic Simplification");
+        // printBody(body, "Algebraic Simplification");
 
 
         new CopyPropagation().transform(body);
-        printBody(body, "Copy Propagation");
+        // printBody(body, "Copy Propagation");
 
         new CommonSubexpressionElimination().transform(body);
-        printBody(body, "CSE");
+        // printBody(body, "CSE");
 
         new LoopInvariantCodeMotion().transform(body);
-        printBody(body, "LICM");
+        // printBody(body, "LICM");
 
         new StrengthReduction().transform(body);
-        printBody(body, "Strength Reduction");
+        // printBody(body, "Strength Reduction");
 
         new InductionVariableElimination().transform(body);
-        printBody(body, "Induction Variable Elimination");
+        // printBody(body, "Induction Variable Elimination");
 
         new LoopPeeling().transform(body);
-        printBody(body, "Loop Peeling");
+        // printBody(body, "Loop Peeling");
 
         new LoopUnrolling().transform(body);
-        printBody(body, "Loop Unrolling");
+        // printBody(body, "Loop Unrolling");
 
         new LoopFusion().transform(body);
-        printBody(body, "Loop Fusion");
+        // printBody(body, "Loop Fusion");
 
         new DeadCodeElimination().transform(body);
-        printBody(body, "Dead Code Elimination");
+        // printBody(body, "Dead Code Elimination");
 
         new UnreachableCodeElimination().transform(body);
-        printBody(body, "Unreachable Code Elimination");
+        // printBody(body, "Unreachable Code Elimination");
     }
 }
