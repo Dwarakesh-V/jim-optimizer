@@ -29,14 +29,19 @@ if uploaded:
 
     if st.button("Run Optimizer"):
 
-        subprocess.run(
+        result = subprocess.run(
             [
                 "mvn",
                 "exec:java",
                 "-Dexec.mainClass=optimizer.Main"
             ],
-            cwd=".."
+            cwd="..",
+            capture_output=True,
+            text=True
         )
+
+        st.subheader("Optimized Jimple")
+        st.code(result.stdout)
 
         jimple_file = uploaded.name.replace(".java", ".jimple")
         jimple_path = os.path.join("../sootOutput", jimple_file)

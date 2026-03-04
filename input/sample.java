@@ -1,8 +1,12 @@
 public class sample {
+
+    static int helper(int x) {
+        return x + 1;
+    }
+
     public static void main(String[] args) {
-        int x = 3 + 5;
-        int y = x;
-        int z = 3 + 5;
-        System.out.println(z);
+        int a = 5;
+        int b = helper(a);
+        System.out.println(b);
     }
 }

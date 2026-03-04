@@ -46,7 +46,25 @@ public class Main {
         System.out.println("-> Running optimizer passes...");
 
         PackManager.v().runPacks();
-        PackManager.v().writeOutput();
+
+        for (SootClass c : Scene.v().getApplicationClasses()) {
+
+            System.out.println("\n===== CLASS: " + c.getName() + " =====");
+
+            for (SootMethod m : c.getMethods()) {
+
+                if (m.isConcrete()) {
+
+                    Body body = m.retrieveActiveBody();
+
+                    System.out.println("\nMETHOD: " + m.getSignature());
+
+                    for (Unit u : body.getUnits()) {
+                        System.out.println(u);
+                    }
+                }
+            }
+        }
 
         System.out.println("-> Output written to: " + outputDir);
         System.out.println("-> Done.");
